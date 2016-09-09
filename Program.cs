@@ -12,7 +12,9 @@ namespace FortuneTeller
         {
             string firstName;
             string lastName;
-            string age;
+            string ageInput;
+            int age = 21;
+            int yearsToRetirement;
             string birthMonth;
             string favColor;
             string siblings;
@@ -31,10 +33,18 @@ namespace FortuneTeller
 
             //Ask the user for the user’s age
             Console.WriteLine("Enter your age");
-            age = Console.ReadLine();
-
+            ageInput = Console.ReadLine();
+            if (ageInput == "quit")
+            {
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                //parse ageinput to int age
+                age = int.Parse(ageInput);
+            }
             //Ask the user for the user’s birth month (as an 'int')
-            Console.WriteLine("Enter your birth month");
+            Console.WriteLine("Enter your birth month (1-12)");
             birthMonth = Console.ReadLine();
 
             //Ask the user for the user’s favorite ROYGBIV color
@@ -50,10 +60,26 @@ namespace FortuneTeller
 
             //Provide fortune
             //If the user’s age is an odd number, then they will retire in ____ years, or ___ years if their age is an even number.
-            //Vaction Home from siblings
-            //Transportation from color
-            //amount of money from birth month
+            //modulas opeator
+            //if age/2 has a remainder then it is an odd number
+            if ( (age % 2 > 0))
+            {
+                yearsToRetirement = 30;
+            }
+            else
+            {
+                yearsToRetirement = 15;
+            }
+            //Vaction Home from siblings (five options)
+            //if else
+            //Transportation from color (seven options)
+            //switch statement
+            //amount of money from birth month (four options including booby prize)
+            //if else 
+
             //FORMATED as [First Name] [Last Name] will retire in [# of Years] with [Amount of Money] in the bank, a vacation home in [Location] and a [Mode of Transportation].
+            Console.WriteLine("RESULT ==" + yearsToRetirement + " years");
+
         }
     }
 }
