@@ -16,7 +16,7 @@ namespace FortuneTeller
             int age = 21;
             int yearsToRetirement;
             string birthMonth;
-            char favColor;
+            string favColor;
             string siblings;
 
             //Get data
@@ -25,7 +25,7 @@ namespace FortuneTeller
             Console.WriteLine("Answer these questions to get your fortune");
             
             Console.WriteLine("Enter your first name");
-            firstName = Console.ReadLine();
+            firstName = Console.ReadLine();         //would be helpful to force capitalization
             if (firstName.ToLower() == "quit")
             {
                 System.Environment.Exit(0);
@@ -52,10 +52,36 @@ namespace FortuneTeller
 
             Console.WriteLine("Enter your birth month (1-12)");
             birthMonth = Console.ReadLine();
+            if (birthMonth.ToLower() == "quit")
+            {
+                System.Environment.Exit(0);
+            }
+            else birthMonthNumber = int.Parse(birthMonth);
 
-            
             Console.WriteLine("Enter your favorite ROYGBIV color, If you do not know what ROYGBIV is then enter HELP");
             favColor = Console.ReadLine();
+
+                if (favColor.ToLower() == "quit")
+                {
+                    System.Environment.Exit(0);
+                }
+                else if (favColor.ToLower() == "help")
+                {
+                    //If help then display this
+                    Console.WriteLine("ROYGBIV stands for:");
+                    Console.WriteLine("R =\tRed");
+                    Console.WriteLine("O =\tOrange");
+                    Console.WriteLine("Y =\tYellow");
+                    Console.WriteLine("G =\tGreen");
+                    Console.WriteLine("B =\tBlue");
+                    Console.WriteLine("I =\tIndigo");
+                    Console.WriteLine("V =\tViolet");
+
+                    Console.WriteLine("\n Enter your favorite ROYGBIV color from list above");
+                    favColor = Console.ReadLine();
+                }
+                favColor = favColor.ToLower();
+                favColor = favColor.Substring(0, 1);   //extract just first letter 
 
             //If the user does not know what ROYGBIV is, ask them to enter “Help” to get a list of the ROYGBIV colors
             //check if help and then provide list,  red, orange, yellow, green, blue, indigo and violet, otherwise store color and move on.
@@ -81,9 +107,42 @@ namespace FortuneTeller
             //if else
 
             //Transportation from color (seven options)
-            //assign color to int
-            //switch statement
+            string transportation;
+            switch (favColor)
+            {
+                case "r":
+                    transportation = "sport car";
+                    break;
 
+                case "o":
+                    transportation = "yacht";
+                    break;
+
+                case "y":
+                    transportation = "submarine";
+                    break;
+
+                case "g":
+                    transportation = "motor home";
+                    break;
+
+                case "b":
+                    transportation = "private jet";
+                    break;
+
+                case "i":
+                    transportation = "motorcycle";
+                    break;
+
+                case "v":
+                    transportation = "space shuttle";
+                    break;
+
+                default:
+                    transportation = "donkey cart";
+                    break;
+
+            }
             //amount of money from birth month (four options including booby prize)
             //if else 
 
