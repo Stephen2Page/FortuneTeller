@@ -16,6 +16,8 @@ namespace FortuneTeller
             int age = 21;
             int yearsToRetirement;
             string birthMonth;
+            int birthMonthNumber = 0;
+            string nestEgg;
             string favColor;
             string siblings;
 
@@ -144,9 +146,29 @@ namespace FortuneTeller
 
             }
             //amount of money from birth month (four options including booby prize)
-            //if else 
-
+            //If the user’s birth month is 1 - 4, they will have $____ in the bank;
+            //if the user's birth month is 5-8, they will have $____ in the bank; and 
+            //if it is 9-12, then they will have $____ in the bank. 
+            //If the user enters something other than 01-12 as their birth month, they will have $0.00 in the bank.
+            if (birthMonthNumber >= 1 && birthMonthNumber <= 4)
+            {
+                nestEgg = "$500,000";
+            }
+            else if (birthMonthNumber >= 5 && birthMonthNumber <= 8)
+            {
+                nestEgg = "$2,000,000";
+            }
+            else if (birthMonthNumber >= 9 && birthMonthNumber <= 12)
+            {
+                nestEgg = "$10,000,000";
+            }
+            else
+            {
+                nestEgg = "a goose egg";
+            }
             //FORMATED as [First Name] [Last Name] will retire in [# of Years] with [Amount of Money] in the bank, a vacation home in [Location] and a [Mode of Transportation].
+            // sample: Console.WriteLine(“{0} is greater than {1}”,x,y)
+            //("{0} {1} will retire in {2} with {3} in the bank, a vaction home in {4} and and a {5}.",variable list);
             Console.WriteLine("RESULT ==" + yearsToRetirement + " years");
 
         }
