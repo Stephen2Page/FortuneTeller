@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+
 
 namespace FortuneTeller
 {
@@ -10,8 +12,6 @@ namespace FortuneTeller
     {
         static void Main(string[] args)
             //TO DO
-            //Convert name to capitalized
-            //setup loop for restarting
             //better solution for quitting
 
         {
@@ -29,32 +29,35 @@ namespace FortuneTeller
             bool restart = true;
             do //while (restart == true)
             {
-                //Get data
+                //GET DATA
                 //check for quit with each
 
                 Console.WriteLine("Answer these questions to get your fortune");
                 //name
-                Console.WriteLine("Enter your first name");
-                firstName = Console.ReadLine();         //would be helpful to force capitalization
+                Console.WriteLine("\nEnter your first name");
+                firstName = Console.ReadLine();
                 if (firstName.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
+                firstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(firstName);
 
-                Console.WriteLine("Enter your last name");
+                Console.WriteLine("\nEnter your last name");
                 lastName = Console.ReadLine();
                 if (lastName.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
+                lastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(lastName);
+
                 //age and birthmonth
-                Console.WriteLine("Enter your age");
+                Console.WriteLine("\nEnter your age");
                 ageInput = Console.ReadLine();
                 if (ageInput.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
                 else
@@ -63,56 +66,56 @@ namespace FortuneTeller
                     age = int.Parse(ageInput);
                 }
 
-                Console.WriteLine("Enter your birth month (1-12)");
+                Console.WriteLine("\nEnter your birth month (1-12)");
                 birthMonth = Console.ReadLine();
                 if (birthMonth.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
                 else birthMonthNumber = int.Parse(birthMonth);
                 //favorite color
-                Console.WriteLine("Enter your favorite ROYGBIV color, If you do not know what ROYGBIV is then enter HELP");
+                Console.WriteLine("\nEnter your favorite ROYGBIV color, If you do not know what ROYGBIV is then enter HELP");
                 favColor = Console.ReadLine();
                 if (favColor.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
                 else if (favColor.ToLower() == "help")
                 {
                     //If help then display this
-                    Console.WriteLine("ROYGBIV stands for:");
-                    Console.WriteLine("R =\tRed");
-                    Console.WriteLine("O =\tOrange");
-                    Console.WriteLine("Y =\tYellow");
-                    Console.WriteLine("G =\tGreen");
-                    Console.WriteLine("B =\tBlue");
-                    Console.WriteLine("I =\tIndigo");
-                    Console.WriteLine("V =\tViolet");
+                    Console.WriteLine("\nROYGBIV stands for:");
+                    Console.WriteLine("\tR =\tRed");
+                    Console.WriteLine("\tO =\tOrange");
+                    Console.WriteLine("\tY =\tYellow");
+                    Console.WriteLine("\tG =\tGreen");
+                    Console.WriteLine("\tB =\tBlue");
+                    Console.WriteLine("\tI =\tIndigo");
+                    Console.WriteLine("\tV =\tViolet");
 
-                    Console.WriteLine("\n Enter your favorite ROYGBIV color from list above");
+                    Console.WriteLine("\nEnter your favorite ROYGBIV color from list above");
                     favColor = Console.ReadLine();
                     if (favColor.ToLower() == "quit")
                     {
-                        Console.WriteLine("Nobody likes a quitter...");
+                        Console.WriteLine("\nNobody likes a quitter...");
                         System.Environment.Exit(0);
                     }
                 }
                 favColor = favColor.ToLower();
                 favColor = favColor.Substring(0, 1);   //extract just first letter 
-                                                       //siblings
-                Console.WriteLine("Enter how many siblings you have");
+                                                     
+                Console.WriteLine("\nEnter how many siblings you have");
                 siblings = Console.ReadLine();
                 if (siblings.ToLower() == "quit")
                 {
-                    Console.WriteLine("Nobody likes a quitter...");
+                    Console.WriteLine("\nNobody likes a quitter...");
                     System.Environment.Exit(0);
                 }
                 int siblingNumber = int.Parse(siblings);
 
                 //PROVIDE FORTUNE
-                //If the user’s age is an odd number, then they will retire in ____ years, or ___ years if their age is an even number.
+                //retirement based on age
                 //modulas opeator
                 //if age/2 has a remainder then it is an odd number
                 if ((age % 2 > 0))
@@ -124,10 +127,11 @@ namespace FortuneTeller
                     yearsToRetirement = 15;
                 }
 
+                //vacation home based on siblings, five options, one based on range.
                 string vacationHome;
                 if (siblingNumber == 0)
                 {
-                    vacationHome = "Bahamas";
+                    vacationHome = "the Bahamas";
                 }
                 else if (siblingNumber == 1)
                 {
@@ -187,7 +191,7 @@ namespace FortuneTeller
                         break;
 
                 }
-
+                //Bank Account from Birth Month based on range. (four options)
                 if (birthMonthNumber >= 1 && birthMonthNumber <= 4)
                 {
                     nestEgg = "$500,000";
@@ -207,9 +211,9 @@ namespace FortuneTeller
 
                 //FORMATED as [First Name] [Last Name] will retire in [# of Years] with [Amount of Money] in the bank, a vacation home in [Location] and a [Mode of Transportation].
                 // sample: Console.WriteLine(“{0} is greater than {1}”,x,y)
-                //("{0} {1} will retire in {2} with {3} in the bank, a vaction home in {4} and and a {5}.",variable list);
+                //
 
-                Console.WriteLine("RESULT ==" + yearsToRetirement + " years");
+                Console.WriteLine("\n{0} {1} will retire in {2} years with {3} in the bank, a vaction home \nin {4} and a {5}.\n",firstName,lastName,yearsToRetirement,nestEgg,vacationHome,transportation);
 
                 Console.WriteLine("Type restart to repeat");
                 string restartInput = Console.ReadLine();
@@ -223,7 +227,7 @@ namespace FortuneTeller
                 }
             }
             while (restart == true);
-            Console.WriteLine("Thank you.");
+            Console.WriteLine("Thank you. Press a key to end");
             Console.ReadKey();
         
         }
